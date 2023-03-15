@@ -1,16 +1,18 @@
 
 import './App.css';
 import Navbar from './Components/NavBar/NavBar.js';
-import ListContainer from './Components/ListContainer/ListContainer.js';
+import IteamListContainer from './Components/IteamListContainer/IteamListContainer.js';
+//import Items from './Components/IteamListContainer/Items';
+import Prueba2 from './Components/prueba2';
 
 
 
 function App() {
   return (
     <div className="App">
-      <Navbar></Navbar>
-      <ListContainer></ListContainer>
-     
+      <Navbar />
+      <IteamListContainer greeting= "Lucas"/>
+      <Prueba2 />
 
     </div>
   );
