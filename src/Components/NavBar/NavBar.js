@@ -26,7 +26,7 @@ function Navbar() {
           </ul>
           <ul className="navbar-nav">
             <li className="nav-item">
-              <CartWidget></CartWidget>
+              <CartWidget />
             </li>
           </ul>
         </div>

@@ -1,10 +1,11 @@
 
 import React, { useState } from "react";
+import Button from 'react-bootstrap/Button';
 
 function ItemCount({ stock, initial, onAdd }) {
   const [count, setCount] = useState(0);
   const [cart, setCart] = useState(0);
-
+  
   const increment = () => {
     if (count < stock) {
       setCount(count + 1);
@@ -26,12 +27,12 @@ function ItemCount({ stock, initial, onAdd }) {
 
   return (
     <div>
-      <button onClick={decrement}>-</button>
+      <Button onClick={decrement}>-</Button>
       <span>{count}</span>
-      <button onClick={increment}>+</button>
-      <button onClick={handleAdd} disabled={stock === 0}>
+      <Button onClick={increment}>+</Button>
+      <Button variant="primary" onClick={handleAdd} disabled={stock === 0}>
         Add to cart
-      </button>
+      </Button>
     </div>
   );
 }
