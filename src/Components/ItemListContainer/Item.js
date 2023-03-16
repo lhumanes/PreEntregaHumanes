@@ -1,7 +1,7 @@
 import Col from 'react-bootstrap/Col';
 import { useState } from 'react';
 import Card from 'react-bootstrap/Card';
-import ItemCount from './ItemCount/ItemCount';
+import ItemCount from '../ItemCount/ItemCount';
 
 
 

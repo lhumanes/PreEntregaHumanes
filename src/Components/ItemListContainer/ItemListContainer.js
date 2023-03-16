@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
-import ItemList from '../ItemList';
+import ItemList from './ItemList';
 
 
 
