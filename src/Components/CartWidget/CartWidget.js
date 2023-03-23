@@ -25,9 +25,7 @@ function CartWidget() {
           {/* Elementos en el carrito */}
           <CartFill size={20} />
           <span className="count">{count}</span>
-          {/* <CartFill size={20} onClick={removeFromCart} /> */}
-          {/* La idea es que se agreguen los productos al clickerar sobre 
-          el mismo, no sobre el carrito. Esto lo dejo asi para no olvidarme lo que fui haciendo */}
+         
           
         </ListGroup.Item>
         {/* Otros elementos en el carrito */}

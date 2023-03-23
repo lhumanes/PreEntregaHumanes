@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 
 
-const ItemList = ({id,image, title, prices, stocks}) => {
+const ItemDetail = ({image, title, description, prices, stocks}) => {
     const [cartItems, setCartItems] = useState(0);
     const handleAdd = (count) => {
     setCartItems(cartItems + count);
@@ -16,11 +16,18 @@ const ItemList = ({id,image, title, prices, stocks}) => {
     return (
         <Col lg={4}>
                     <Card style={{ width: '18rem' }}>
-                    <Link to={"/Item/" +id } className="text-decoration-none" ><Card.Img variant="top" src={image} /></Link>
+                    <Card.Img variant="top" src={image} />
                             <Card.Body>
                                 <Card.Title>{title}</Card.Title>
                                     <Card.Text>
+                                        {description}
+                                        <Card.Text>
                                         Price: US${prices}
+                                        </Card.Text>
+                                        <Card.Text>
+                                        Availability: {stocks}
+                                        </Card.Text>
+                                       
                                     </Card.Text>
                                     <ItemCount stock={stocks} initial={0} onAdd={handleAdd}/>
                                     
@@ -34,5 +41,5 @@ const ItemList = ({id,image, title, prices, stocks}) => {
 }
 
 
-export default ItemList
+export default ItemDetail
 

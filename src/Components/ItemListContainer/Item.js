@@ -1,44 +1,52 @@
-import Col from 'react-bootstrap/Col';
-import { useState } from 'react';
-import Card from 'react-bootstrap/Card';
-import ItemCount from '../ItemCount/ItemCount';
+import React from 'react'
+import { useState, useEffect } from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import { useParams } from 'react-router-dom';
+import ItemDetail from './ItemDetail';
 
 
 
 
 
 
-const Item = ({image, title, description, prices, stocks}) => {
-    const [cartItems, setCartItems] = useState(0);
-    const handleAdd = (count) => {
-    setCartItems(cartItems + count);
-    }
+const Item = () => {
+    const [items, setItems] = useState(null)
+   const {idProd}= useParams();
+
+    const getItems = async(id)=>{
+     setTimeout(async () => {
+         const response = await fetch(`https://dummyjson.com/products/${id}`)
+         const data = await response.json()
+         setItems(data.product)
+         console.log(data)
+        
+     }, 2000);
+    };
+
+
+
+  
+    useEffect(()=>{
+        getItems(idProd)
+    }, [idProd])
+console.log(idProd)
+    
+const filteredItems = items ? (idProd ? items.filter(item => item.id === idProd) : items) : [];
+  
     return (
-        <Col lg={4}>
-                    <Card >
-                        <Card.Img variant="top" src={image} />
-                            <Card.Body>
-                                <Card.Title>{title}</Card.Title>
-                                    <Card.Text>
-                                        {description}
-                                        <Card.Text>
-                                        Price: US${prices}
-
-                                        </Card.Text>
-                                        Availability: {stocks}
-                                        
-                                       
-                                    </Card.Text>
-                                    <ItemCount stock={stocks} initial={0} onAdd={handleAdd}/>
-                                    
-                            </Card.Body>
-                    </Card>
-            </Col>
-
-
-    )
-
-}
-
+    <Container fluid>
+        <Row>
+           {filteredItems.map(item => (
+           <ItemDetail key={item.id} 
+           image={item.images[0]} 
+           title={item.title} 
+           description={item.description} 
+           prices={item.price}
+           stocks={item.stock} />))}     
+        </Row>
+    </Container>
+  );
+};
 
 export default Item
