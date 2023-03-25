@@ -16,7 +16,7 @@ const ItemList = ({id,image, title, prices, stocks}) => {
     return (
         <Col lg={4}>
                     <Card style={{ width: '18rem' }}>
-                    <Link to={"/Item/" +id } className="text-decoration-none" ><Card.Img variant="top" src={image} /></Link>
+                    <Link to={`/Item/${id}` } className="text-decoration-none" ><Card.Img variant="top" src={image} /></Link>
                             <Card.Body>
                                 <Card.Title>{title}</Card.Title>
                                     <Card.Text>

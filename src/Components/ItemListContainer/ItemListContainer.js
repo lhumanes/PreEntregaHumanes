@@ -43,7 +43,8 @@ const ItemListContainer = () => {
            title={item.title} 
            description={item.description} 
            prices={item.price}
-           stocks={item.stock} />))}     
+           stocks={item.stock}
+           id={item.id} />))}     
         </Row>
     </Container>
   );

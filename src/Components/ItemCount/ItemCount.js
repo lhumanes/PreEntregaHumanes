@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
 
-function ItemCount({ stock, initial, onAdd }) {
+function ItemCount({ stock, onAdd }) {
   const [count, setCount] = useState(0);
   const [cart, setCart] = useState(0);
   
@@ -13,7 +13,7 @@ function ItemCount({ stock, initial, onAdd }) {
   };
 
   const decrement = () => {
-    if (count > 1) {
+    if (count > 0) {
       setCount(count - 1);
     }
   };
