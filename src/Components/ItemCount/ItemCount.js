@@ -1,41 +1,36 @@
-
-import React, { useState } from "react";
+import React from 'react';
 import Button from 'react-bootstrap/Button';
+import {useContext, useState} from 'react';
 
-function ItemCount({ stock, onAdd }) {
-  const [count, setCount] = useState(0);
-  const [cart, setCart] = useState(0);
+
+function ItemCount({stock, start, onAdd}) {
+  const [count, setCount] = useState(start);
+
   
-  const increment = () => {
-    if (count < stock) {
-      setCount(count + 1);
-    }
-  };
+  const AddOne = () => {
+    setCount(count + 1);
+    };
 
-  const decrement = () => {
-    if (count > 0) {
-      setCount(count - 1);
-    }
-  };
-
+  const RestOne = () => {
+ if (count > 0) {
+   setCount(count - 1);
+ }
+}
  
+  
 
-  const handleAdd = (count) => {
-    setCart(cart + count);
-    onAdd(count);
-  };
 
   return (
     <div>
-      <Button onClick={decrement}>-</Button>
+      <Button onClick={RestOne}>-</Button>
       <span>{count}</span>
-      <Button onClick={increment}>+</Button>
-      <Button variant="primary" onClick={handleAdd} disabled={stock === 0}>
+      <Button onClick={AddOne} disabled={count >= stock}>+</Button>
+      <Button variant="primary" onClick={()=> onAdd(count)} disabled={stock === 0}>
         Add to cart
       </Button>
     </div>
   );
-}
+};
 
 export default ItemCount;
 

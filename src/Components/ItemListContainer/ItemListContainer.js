@@ -1,53 +1,37 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ItemList from './ItemList';
-
-
-
+import { getFirestore, collection, getDocs, query,where } from 'firebase/firestore'; // Importe la instancia de Firestore
 
 
 
 const ItemListContainer = () => {
-    const [items, setItems] = useState([])
-    const {id} = useParams ();
+    const [items, setItem] = useState([])
+    const {categoryId} = useParams ();
 
-    const getItems = async()=>{
-     setTimeout(async () => {
-         const response = await fetch('https://dummyjson.com/products?limit=10')
-         const data = await response.json()
-         setItems(data.products)
-         console.log(data)
-        
-     }, 2000);
-    };
+    useEffect(() => {
+        const queryDb = getFirestore();
+        const queryCollection = collection(queryDb, 'Items');
+                  
+                if (categoryId) {
+                    const itemsSnapshot = query(queryCollection, where('categoryId', '==', categoryId))
+                    getDocs(itemsSnapshot)
+                    .then(res=>setItem (res.docs.map(p=>({id: p.id, ...p.data()}))))
+                } else {
+                    getDocs(queryCollection)
+                    .then(res=>setItem (res.docs.map(p=>({id: p.id, ...p.data()}))))
+                }
+                 }, [categoryId])
+               
 
-
-
-  
-    useEffect(()=>{
-        getItems()
-    }, [id])
-
-    const filteredItems = id ? items.filter(item => item.category === id) : items;
-
-  
     return (
-    <Container fluid>
-        <Row>
-           {filteredItems.map(item => (
-           <ItemList key={item.id} 
-           image={item.images[0]} 
-           title={item.title} 
-           description={item.description} 
-           prices={item.price}
-           stocks={item.stock}
-           id={item.id} />))}     
-        </Row>
-    </Container>
+    
+        <div>
+
+        <ItemList data={items} />
+
+        </div>
   );
 };
 
-export default ItemListContainer
+export default ItemListContainer;

@@ -1,38 +1,23 @@
-import React, {useState} from 'react';
+
 import { ListGroup } from 'react-bootstrap';
 import { CartFill } from 'react-bootstrap-icons';
-
+import {useContext} from 'react';
+import { CartContext } from '../../Context/CartContext';
 
 function CartWidget() {
-  const [count, setCount] = useState(0);
-
-  // Función para agregar un elemento al carrito
-  const addToCart = () => {
-    setCount(count + 1);
-    
-  };
-
-  // Función para eliminar un elemento del carrito
-  const removeFromCart = () => {
-    setCount(count - 1);
-    
-  };
+  const {getQuantity}= useContext(CartContext)
+ 
+  
 
   return (
     <div className="cart">
       <ListGroup className="cart-items">
         <ListGroup.Item>
-          {/* Elementos en el carrito */}
-          <CartFill size={20} />
-          <span className="count">{count}</span>
-         
-          
-        </ListGroup.Item>
-        {/* Otros elementos en el carrito */}
-      </ListGroup>
-      <div className="cart-summary">
-        {/* Resumen del carrito */}
-      </div>
+         <CartFill size={30} />
+          <span>{getQuantity()}</span>
+         </ListGroup.Item>
+         </ListGroup>
+    
     </div>
   );
 }

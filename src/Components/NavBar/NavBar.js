@@ -1,7 +1,7 @@
 import React from 'react';
 import CartWidget from '../CartWidget/CartWidget';
 import './NavBar.css';
-import { Link, NavLinks} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 
 function Navbar() {
@@ -28,7 +28,7 @@ function Navbar() {
             </ul>
             <ul className="navbar-nav">
               <li className="nav-item">
-                <CartWidget />
+                <Link to={"/Cart"}className="nav-link active" aria-current="page" href="#"><CartWidget /></Link>
               </li>
             </ul>
         </div>      
